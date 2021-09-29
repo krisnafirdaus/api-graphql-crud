@@ -3,22 +3,18 @@ const mongoose = require("mongoose");
 
 const typeDefs = require("./schema");
 const resolvers = require("./resolvers");
-const {
-    ApolloServerPluginLandingPageGraphQLPlayground,
-} = require("apollo-server-core");
+const dotenv = require("dotenv");
 
-mongoose.connect(
-    "mongodb+srv://krisna:Gardafc16.@mydatabase.qo9iq.mongodb.net/crud_graphql",
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    }
-);
+dotenv.config();
+
+mongoose.connect(process.env.NODE_API, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginLandingPageGraphQLPlayground],
 });
 
 server.listen().then(({ url }) => {

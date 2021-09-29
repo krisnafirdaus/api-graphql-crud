@@ -10,8 +10,19 @@ const typeDefs = gql`
         genre: String!
     }
 
+    type List {
+        _id: ID!
+        part_name: String!
+        spesifikasi: String!
+        merek: String!
+        stock: Int!
+        limit: Int!
+        use_at: String!
+    }
+
     type Query {
         getAllBooks: [Book]!
+        getAllList: [List]!
         getBook(_id: ID!): Book
     }
 
@@ -23,6 +34,15 @@ const typeDefs = gql`
             release_year: Int!
             genre: String!
         ): Book!
+
+        createList(
+            part_name: String!
+            spesifikasi: String!
+            merek: String!
+            stock: Int!
+            limit: Int!
+            use_at: String!
+        ): List!
 
         updateBook(
             _id: ID!
